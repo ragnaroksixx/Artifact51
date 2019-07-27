@@ -9,6 +9,7 @@ public class SceneLoader : MonoBehaviour
         MIXED_REALITY,
         OCULUS
     }
+    public BuildType buildType;
     public string[] scenes;
 
     [SerializeField]
@@ -30,6 +31,7 @@ public class SceneLoader : MonoBehaviour
             string activeScenePath = GetActiveScenePath(activeScene);
             LoadScenesAdditive(scenes, activeScenePath);
             LoadEnvironmentScene(activeScenePath);
+            LoadHeadsetScene();
         }
     }
 
@@ -63,6 +65,23 @@ public class SceneLoader : MonoBehaviour
         else
         {
             Debug.LogError("No environment scenes set on SceneLoader!");
+        }
+    }
+    private void LoadHeadsetScene()
+    {
+        switch (buildType)
+        {
+            case BuildType.STANDALONE:
+                SceneManager.LoadSceneAsync("Scenes/Oculus", LoadSceneMode.Additive);
+                break;
+            case BuildType.MIXED_REALITY:
+                SceneManager.LoadSceneAsync("Scenes/Steam", LoadSceneMode.Additive);
+                break;
+            case BuildType.OCULUS:
+                SceneManager.LoadSceneAsync("Scenes/Oculus", LoadSceneMode.Additive);
+                break;
+            default:
+                break;
         }
     }
 

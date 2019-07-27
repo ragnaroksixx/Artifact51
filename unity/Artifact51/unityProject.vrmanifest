@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.artifact51.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "C:\\Users\\Ragna\\Documents\\Bitbucket\\Artifact51\\unity\\Artifact51\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "Artifact51 [Testing]"
+        }
+      }
+    }
+  ]
+}

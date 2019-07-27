@@ -43,9 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cafa0224566d074f8635faa37b0769c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildType: 0
   scenes:
   - Scenes/Main
-  - Scenes/Oculus
   _environmentScenes:
   - Scenes/EnvironementTest
   _environmentIndex: 0

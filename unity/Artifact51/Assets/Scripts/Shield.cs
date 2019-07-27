@@ -22,13 +22,37 @@ public class Shield : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void OnHit(GameObject source)
+    public void OnHit(GameObject source, Vector3 point)
     {
-        caughtObject.Add(source);
-        if (caughtObject.Count >= capacity)
+        if (source.tag == "shield")
         {
-            DestroyShield();
-            grid.RemoveShield(this);
+            if (grid.isAnimatingUp && source.transform.root != transform.root)
+            {
+                grid.Return();
+            }
+            return;
         }
+        AlienBullet projectile = source.GetComponent<AlienBullet>();
+        if (projectile)
+        {
+            caughtObject.Add(source);
+            projectile.Stop(point);
+            if (caughtObject.Count >= capacity)
+            {
+                DestroyShield();
+                grid.RemoveShield(this);
+            }
+            return;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        OnHit(collision.gameObject, collision.GetContact(0).point);
+    }
+
+    public void DisableCollision()
+    {
+        GetComponentInChildren<Collider>().enabled = false;
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7915801886203397173}
   m_Layer: 0
   m_Name: Shield Grid
-  m_TagString: Untagged
+  m_TagString: shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,6 +58,9 @@ MonoBehaviour:
   - {fileID: 8721546283394207520}
   - {fileID: 8721546282637495360}
   centerShield: {fileID: 23783674437459644}
+  duration: 5
+  spawnDuration: 1
+  isAnimatingUp: 0
 --- !u!1001 &1961685554246082149
 PrefabInstance:
   m_ObjectHideFlags: 0

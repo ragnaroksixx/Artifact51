@@ -11,10 +11,9 @@ public class ShieldGenerator : MonoBehaviour
     float chargeRate = 5;
     public int shieldsInWorld = 0;
     public float spawnDistance = 0.3f;
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-
+        currentLevel = maxLevel;
     }
 
     // Update is called once per frame
@@ -46,8 +45,10 @@ public class ShieldGenerator : MonoBehaviour
         }
     }
 
-    bool CanMakeShield()
+    public void AddShield(int value)
     {
-        return currentLevel > 0;
+        currentLevel += value;
+        if (currentLevel > maxLevel)
+            currentLevel = maxLevel;
     }
 }

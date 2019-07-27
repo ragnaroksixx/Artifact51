@@ -272,6 +272,7 @@
     <Compile Include="Assets\Scripts\ShieldGenerator.cs" />
     <Compile Include="Assets\Scripts\ShieldGrid.cs" />
     <Compile Include="Assets\Scripts\VRInit.cs" />
+    <Compile Include="Assets\Scripts\VRReferences.cs" />
     <None Include="Assets\Oculus\SampleFramework\Usage\DistanceGrab\Materials\CrosshairZCheat.shader" />
     <None Include="Assets\Oculus\SampleFramework\Usage\DistanceGrab\Materials\ToyCubeWithOutline.shader" />
     <None Include="Assets\Oculus\SampleFramework\Usage\Stereo180Video\Resources\Multiview Stereo.shader" />

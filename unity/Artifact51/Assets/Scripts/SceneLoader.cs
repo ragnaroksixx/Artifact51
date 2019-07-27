@@ -17,7 +17,7 @@ public class SceneLoader : MonoBehaviour
     [SerializeField]
     private int _environmentIndex;
 
-    private void Start()
+    private void Awake()
     {
         Scene activeScene = SceneManager.GetActiveScene();
 

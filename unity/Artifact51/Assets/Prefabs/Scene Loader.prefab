@@ -47,5 +47,5 @@ MonoBehaviour:
   scenes:
   - Scenes/Main
   _environmentScenes:
-  - Scenes/EnvironementTest
+  - Scenes/EnvironmentTest
   _environmentIndex: 0

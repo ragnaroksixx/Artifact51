@@ -5,6 +5,8 @@ public class StandaloneInputHandler : VRInputHandler
 {
     protected override void SetUpActions()
     {
+        RegisterAction(VRInputHandler.CREATE_SHIELD, KeyCode.Mouse0);
+        RegisterAction(VRInputHandler.DEBUG_RESTART_SCENE, KeyCode.R);
     }
 
     void RegisterAction(string action, KeyCode k)
@@ -27,11 +29,11 @@ public class StandAloneInputButton : InputButton
 
     public override bool IsHeld()
     {
-        throw new System.NotImplementedException();
+        return Input.GetKey(key);
     }
 
     public override bool IsUp()
     {
-        throw new System.NotImplementedException();
+        return Input.GetKeyUp(key);
     }
 }

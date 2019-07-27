@@ -9,6 +9,8 @@ public abstract class VRInputHandler : MonoBehaviour
     private static VRInputHandler Instance = null;
 
     public const string CREATE_SHIELD = "createShield";
+    public const string DEBUG_RESTART_SCENE = "restartdebug";
+
     private void Awake()
     {
         SetUpActions();

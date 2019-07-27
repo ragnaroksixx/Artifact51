@@ -69,10 +69,16 @@ public class SceneLoader : MonoBehaviour
     }
     private void LoadHeadsetScene()
     {
+#if UNITY_EDITOR
+        if (buildType == BuildType.OCULUS)
+        {
+            buildType = BuildType.STANDALONE;
+        }
+#endif
         switch (buildType)
         {
             case BuildType.STANDALONE:
-                SceneManager.LoadSceneAsync("Scenes/Oculus", LoadSceneMode.Additive);
+                SceneManager.LoadSceneAsync("Scenes/Standalone", LoadSceneMode.Additive);
                 break;
             case BuildType.MIXED_REALITY:
                 SceneManager.LoadSceneAsync("Scenes/Steam", LoadSceneMode.Additive);

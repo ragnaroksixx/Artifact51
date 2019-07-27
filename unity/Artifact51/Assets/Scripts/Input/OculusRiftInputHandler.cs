@@ -14,6 +14,7 @@ public class OculusRiftInputHandler : VRInputHandler
         buttons.Clear();
         axes.Clear();
         RegisterAction(VRInputHandler.CREATE_SHIELD, OVRInput.Button.PrimaryHandTrigger, OVRInput.Controller.LTouch);
+        RegisterAction(VRInputHandler.DEBUG_RESTART_SCENE, OVRInput.Button.One, OVRInput.Controller.LTouch);
        // RegisterAction(VRInputHandler.UI_SELECTION_LEFT, OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch);
     }
     void RegisterAction(string key, OVRInput.Button b, OVRInput.Controller c)

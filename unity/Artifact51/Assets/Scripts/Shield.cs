@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public List<GameObject> caughtObject = new List<GameObject>();
+    public bool canCatch = true;
+    public int capacity = 2;
+    ShieldGrid grid;
+    public void Init(ShieldGrid g, int c)
     {
-        
+        capacity = c;
+        grid = g;
+    }
+    public void DestroyShield()
+    {
+        foreach (GameObject obj in caughtObject)
+        {
+            Destroy(obj);
+        }
+        Destroy(this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnHit(GameObject source)
     {
-        
+        caughtObject.Add(source);
+        if (caughtObject.Count >= capacity)
+        {
+            DestroyShield();
+            grid.RemoveShield(this);
+        }
     }
 }

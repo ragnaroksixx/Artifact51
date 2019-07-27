@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShieldGenerator : MonoBehaviour
 {
-    public ShieldGrid sheieldGridPrefab;
+    public ShieldGrid shieldGridPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +18,9 @@ public class ShieldGenerator : MonoBehaviour
         if (VRInputHandler.OnButtonDown(VRInputHandler.CREATE_SHIELD))
         {
             Debug.LogError("RARW");
+            ShieldGrid shields = GameObject.Instantiate(shieldGridPrefab);
+            shields.transform.position = VRReferences .LeftHand.position;
+            shields.Init();
         }
     }
 }

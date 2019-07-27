@@ -39,7 +39,7 @@ public class AlienArea : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        for(int i = 0; i < 19; i++)
+        for(int i = 0; i < 20; i++)
         {
             float r = i / 20f * 360;
             float r2 = (i + 1) / 20f * 360;

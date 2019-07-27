@@ -5,7 +5,6 @@ public class StandaloneInputHandler : VRInputHandler
 {
     protected override void SetUpActions()
     {
-        throw new System.NotImplementedException();
     }
 
     void RegisterAction(string action, KeyCode k)

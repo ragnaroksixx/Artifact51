@@ -288,15 +288,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d97c85225323a45a48fa76cd04f16e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTarget: {fileID: 0}
-  aimTarget: {fileID: 0}
-  moveSpeed: 10
-  moveAccel: 50
+  moveSpeed: 5
+  moveAccel: 10
   stopRadius: 1
   cannon: {fileID: 1724086912400911744}
   bullet: {fileID: 8887183273264723998, guid: 0d89b91c87fa52745a435d56789065df, type: 3}
   fireRate: 1
-  bulletSpeed: 30
+  bulletSpeed: 10
 --- !u!33 &3436551244482289191
 MeshFilter:
   m_ObjectHideFlags: 0

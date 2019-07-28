@@ -10,6 +10,8 @@ public abstract class VRInputHandler : MonoBehaviour
 
     public const string CREATE_SHIELD = "createShield";
     public const string SHOOT = "shoot";
+    public const string INTERACT_RIGHT = "interactr";
+    public const string INTERACT_LEFT = "interactl";
     public const string DEBUG_RESTART_SCENE = "restartdebug";
 
     private void Awake()

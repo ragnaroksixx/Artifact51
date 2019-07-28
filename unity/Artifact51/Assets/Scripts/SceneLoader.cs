@@ -72,7 +72,7 @@ public class SceneLoader : MonoBehaviour
 #if UNITY_EDITOR
         if (buildType == BuildType.OCULUS)
         {
-            buildType = BuildType.STANDALONE;
+            //buildType = BuildType.STANDALONE;
         }
 #endif
         switch (buildType)

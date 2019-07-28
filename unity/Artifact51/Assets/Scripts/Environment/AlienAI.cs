@@ -18,7 +18,11 @@ public class AlienAI : MonoBehaviour
     Rigidbody body;
     float bulletTimer = 0;
     Collider playerHead;
-    
+    public Animator legsAnim, torsoAnim;
+    public Transform torso;
+    bool stopped = false;
+    int shootsBeforeMove = 3;
+    int shootsTrack;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,20 +45,27 @@ public class AlienAI : MonoBehaviour
     void Update()
     {
         Vector3 target = playerHead.transform.position - transform.position;
-        transform.rotation = Quaternion.Euler(0, -90 -Mathf.Atan2(-target.z, -target.x) * Mathf.Rad2Deg, 0);
+
+        torso.rotation = Quaternion.LookRotation((playerHead.transform.position - cannon.transform.position).normalized, Vector3.up);
         cannon.transform.rotation = Quaternion.LookRotation((playerHead.transform.position - cannon.transform.position).normalized, Vector3.up);
+        legsAnim.SetBool("isMoving", !stopped);
+        torsoAnim.SetBool("isMoving", !stopped);
     }
 
     private void FixedUpdate()
     {
-        bool stopped = false;
+
         Vector3 targetVel = Vector3.zero;
-        if(moveTarget != null)
+        if (moveTarget != null)
         {
             targetVel = moveTarget - transform.position;
-        } else
+            transform.rotation = Quaternion.Euler(0, -90 - Mathf.Atan2(-targetVel.z, -targetVel.x) * Mathf.Rad2Deg, 0);
+        }
+        else
         {
             targetVel = Vector3.zero - transform.position; //move to the origin if target is null
+            Vector3 target = playerHead.transform.position - transform.position;
+            transform.rotation = Quaternion.Euler(0, -90 - Mathf.Atan2(-target.z, -target.x) * Mathf.Rad2Deg, 0);
         }
         targetVel = new Vector3(targetVel.x, 0, targetVel.z);
 
@@ -62,9 +73,11 @@ public class AlienAI : MonoBehaviour
         {
             targetVel = Vector3.zero; //come to a stop.
             stopped = true;
-        } else
+        }
+        else
         {
             targetVel = targetVel.normalized * moveSpeed; //move at move speed.
+            stopped = false;
         }
 
         Vector3 currentVel = Vector3.Scale(new Vector3(1, 0, 1), body.velocity);
@@ -83,6 +96,15 @@ public class AlienAI : MonoBehaviour
                 Rigidbody bBody = b.GetComponent<Rigidbody>();
                 bBody.velocity = cannon.transform.forward * bulletSpeed;
                 bulletTimer -= 1 / fireRate * Random.Range(1, fireRandomness);
+                legsAnim.SetTrigger("shoot");
+                torsoAnim.SetTrigger("shoot");
+                shootsTrack++;
+            }
+            if (shootsTrack > shootsBeforeMove)
+            {
+                shootsTrack = 0;
+                moveTarget = AlienArea.instance.GetTarget(transform.position, moveTargetArc);
+
             }
         }
     }

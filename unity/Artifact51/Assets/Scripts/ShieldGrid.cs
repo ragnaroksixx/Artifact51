@@ -2,13 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class ShieldGrid : MonoBehaviour
 {
     public List<Shield> shields;
     public Shield centerShield;
     ShieldGenerator source;
-    public float duration = 5;
+    float duration = 15;
     float spawnDuration = .2f;
     public bool isAnimatingUp;
     Tween animateUp;
@@ -22,7 +24,7 @@ public class ShieldGrid : MonoBehaviour
         centerShield.Init(this, 9999);
         duration += spawnDuration;
         Vector3 maxScale = transform.localScale;
-        transform.localScale = Vector3.zero;
+        transform.localScale = Vector3.one * 0.001f;//unity doesn't like 0 here for some reason
         isAnimatingUp = true;
         animateUp = transform.DOScale(maxScale, spawnDuration);
         animateUp.OnComplete(() => { isAnimatingUp = false; });

@@ -2,18 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlienBullet : MonoBehaviour
+public class AlienBullet : Interactable
 {
-    Rigidbody rBody;
-    private void Awake()
-    {
-        rBody = GetComponent<Rigidbody>();
-    }
-
+    public Shield attachedShield;
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(this, 30);
+        //Destroy(this, 30);
     }
 
     // Update is called once per frame
@@ -31,7 +26,33 @@ public class AlienBullet : MonoBehaviour
     {
         rBody.velocity = Vector3.zero;
         transform.position = position;
-        rBody.isKinematic = true;
+        rBody.constraints = RigidbodyConstraints.FreezeAll;
+        //GetComponent<Collider>().enabled = false;
+    }
+
+    public override bool IsInteractable()
+    {
+        return rBody.constraints == RigidbodyConstraints.FreezeAll; ;
+    }
+    public override void Release(Vector3 velocity)
+    {
+        GetComponent<Collider>().enabled = true;
+        base.Release(velocity);
+        rBody.constraints = RigidbodyConstraints.None;
+        if (velocity.magnitude >= 0.015f)
+            rBody.velocity = velocity.normalized * 30;
+        else
+        {
+            rBody.velocity = velocity * 60;
+            rBody.useGravity = true;
+        }
+    }
+    public override void Grab(Transform hand)
+    {
+        if (attachedShield)
+            attachedShield.Detach(gameObject);
+        base.Grab(hand);
         GetComponent<Collider>().enabled = false;
+        rBody.constraints = RigidbodyConstraints.FreezeAll;
     }
 }

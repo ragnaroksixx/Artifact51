@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using TMPro;
 using UnityEngine;
 
 public class ShieldGenerator : MonoBehaviour
@@ -11,6 +13,7 @@ public class ShieldGenerator : MonoBehaviour
     float chargeRate = 5;
     public int shieldsInWorld = 0;
     public float spawnDistance = 0.3f;
+    public TMP_Text text;
     private void Awake()
     {
         currentLevel = maxLevel;
@@ -43,6 +46,8 @@ public class ShieldGenerator : MonoBehaviour
                 currentLevel++;
             }
         }
+        text.text = "Level: " + currentLevel;
+        text.text += "\nCharge: " + chargeTrack;
     }
 
     public void AddShield(int value)

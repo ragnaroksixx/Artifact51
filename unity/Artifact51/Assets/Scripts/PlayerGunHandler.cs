@@ -13,7 +13,7 @@ public class PlayerGunHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (VRInputHandler.OnButtonUp(VRInputHandler.SHOOT))
+        if (gun && VRInputHandler.OnButtonUp(VRInputHandler.SHOOT))
         {
             gun.Shoot();
         }

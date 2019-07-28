@@ -1,27 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
 using DG.Tweening;
+using TMPro;
 
-public class Gun : MonoBehaviour
+public class Gun : Interactable
 {
     public GameObject bullet;
     public float bulletSpeed = 30;
-    Rigidbody body;
     public Transform nozzle;
     Tween recoilTween;
     Tween punchTween;
     Vector3 startPos;
-    private void Awake()
+    public TMP_Text text;
+    public int ammo;
+    GunSpawner spawner;
+    PlayerGunHandler gunHandler;
+    public float gunCooldown;
+    protected override void Awake()
     {
+        base.Awake();
         startPos = transform.localPosition;
+        text.text = ammo.ToString(); ;
+    }
+    public void Init(GunSpawner gs)
+    {
+        spawner = gs;
     }
     public void Shoot()
     {
+        if (ammo <= 0) return;
 
         GameObject b = GameObject.Instantiate(bullet, nozzle.transform.position, nozzle.transform.rotation);
         Rigidbody bBody = b.GetComponent<Rigidbody>();
         bBody.velocity = nozzle.transform.forward * bulletSpeed;
         Recoil();
+        ammo--;
+        text.text = ammo.ToString(); ;
     }
 
     public void Recoil()
@@ -44,6 +58,29 @@ public class Gun : MonoBehaviour
             punchTween = toRecoil.DOLocalMoveZ(startPos.z, duration * .4f);
         }
 );
+    }
+    public override void Release(Vector3 velocity)
+    {
+        base.Release(velocity);
+        rBody.constraints = RigidbodyConstraints.None;
+
+        rBody.velocity = velocity * 125;
+        rBody.useGravity = true;
+        if(gunHandler)
+        {
+            gunHandler.gun = null;
+            gunHandler = null;
+        }
+    }
+
+    public override void Grab(Transform hand)
+    {
+        base.Grab(hand);
+        if (spawner)
+        {
+            spawner.TakeWeapon();
+            spawner = null;
+        }
     }
 
 }

@@ -36,6 +36,7 @@ public class Shield : MonoBehaviour
         if (projectile)
         {
             if (caughtObject.Contains(source)) return;
+            projectile.attachedShield = this;
             caughtObject.Add(source);
             projectile.Stop(point);
             if (caughtObject.Count > capacity)
@@ -51,7 +52,17 @@ public class Shield : MonoBehaviour
     {
         OnHit(collision.gameObject, collision.GetContact(0).point);
     }
-
+    private void OnCollisionExit(Collision collision)
+    {
+        Detach(collision.gameObject);
+    }
+    public void Detach(GameObject g)
+    {
+        if (caughtObject.Contains(g))
+        {
+            caughtObject.Remove(g);
+        }
+    }
     public void DisableCollision()
     {
         GetComponentInChildren<Collider>().enabled = false;

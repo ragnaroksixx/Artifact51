@@ -17,6 +17,11 @@ public class VRInit : MonoBehaviour
         AttachToRoot(lhand, leftHandRoot);
         AttachToRoot(rhand, rightHandRoot);
 
+        yield return null; //allow headset to set initial position
+        yield return null; //allow headset to set initial position
+        Vector3 newPos = -headRoot.transform.localPosition;
+        newPos.y = headRoot.transform.root.position.y;
+        headRoot.transform.root.position = newPos;
     }
 
     private void AttachToRoot(Transform obj, Transform root)

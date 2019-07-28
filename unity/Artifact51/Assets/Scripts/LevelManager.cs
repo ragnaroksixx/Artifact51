@@ -10,6 +10,9 @@ public class LevelManager : MonoBehaviour
     public AlienUFO enemyspawner;
     float darkDensity = 1;
     float lightDensity = .15f;
+
+    public GameObject alienPrefab;
+
     private void Awake()
     {
         Instance = this;
@@ -59,4 +62,22 @@ public class LevelManager : MonoBehaviour
     {
         enemyspawner.gameObject.SetActive(true);
     }
+}
+
+[System.Serializable]
+public class Level
+{
+    public UFOData[] ufos;
+    public GroundUnitData[] units;
+}
+
+[System.Serializable]
+public class UFOData
+{
+
+}
+[System.Serializable]
+public class GroundUnitData
+{
+
 }

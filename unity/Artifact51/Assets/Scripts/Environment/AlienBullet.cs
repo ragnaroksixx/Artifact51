@@ -10,13 +10,14 @@ public class AlienBullet : Interactable
     float lifeTime = 30;
     bool dying = true;
     public GameObject explosion;
-
+    TrailRenderer tRender;
     // Start is called before the first frame update
     void Start()
     {
         lifeTime = startLifetime;
         explosion = GameObject.Instantiate(explosion, transform.position, transform.rotation);
         explosion.SetActive(false);
+        tRender = GetComponentInChildren<TrailRenderer>();
     }
 
     private void OnEnable()
@@ -33,7 +34,7 @@ public class AlienBullet : Interactable
     private void FixedUpdate()
     {
         lifeTime -= Time.fixedDeltaTime;
-        if(lifeTime <=0 && dying)
+        if (lifeTime <= 0 && dying)
         {
             Death();
         }
@@ -57,7 +58,8 @@ public class AlienBullet : Interactable
         transform.position = position;
         rBody.constraints = RigidbodyConstraints.FreezeAll;
         lifeTime = startLifetime;
-        //GetComponent<Collider>().enabled = false;
+        if (tRender)
+            tRender.emitting = false;
     }
 
     public override bool IsInteractable()
@@ -79,6 +81,11 @@ public class AlienBullet : Interactable
         lifeTime = startLifetime;
         dying = true;
         transform.SetParent(BulletPool.instance.transform, true);
+        if (tRender)
+        {
+            tRender.transform.localPosition = Vector3.zero;
+            tRender.emitting = true;
+        }
     }
     public override void Grab(Transform hand)
     {
@@ -90,5 +97,7 @@ public class AlienBullet : Interactable
         rBody.constraints = RigidbodyConstraints.FreezeAll;
         lifeTime = startLifetime;
         dying = false;
+        if (tRender)
+            tRender.emitting = false;
     }
 }

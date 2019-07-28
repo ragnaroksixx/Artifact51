@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 
 public class ShieldGrid : MonoBehaviour
@@ -14,6 +15,7 @@ public class ShieldGrid : MonoBehaviour
     float spawnDuration = .2f;
     public bool isAnimatingUp;
     Tween animateUp;
+    public Image i;
     public void Init(ShieldGenerator s)
     {
         source = s;
@@ -28,6 +30,8 @@ public class ShieldGrid : MonoBehaviour
         isAnimatingUp = true;
         animateUp = transform.DOScale(maxScale, spawnDuration);
         animateUp.OnComplete(() => { isAnimatingUp = false; });
+        i.DOFillAmount(0, duration + spawnDuration);
+        i.DOColor(Color.red, duration + spawnDuration);
     }
     private void Update()
     {

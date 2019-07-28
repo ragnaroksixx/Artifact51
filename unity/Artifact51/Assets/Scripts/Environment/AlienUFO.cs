@@ -29,7 +29,7 @@ public class AlienUFO : MonoBehaviour
         ufoPhys.targetPosition = dropStart;
         dropDelay = Random.Range(0, (dropTimer / dropTotal));
     }
-
+    //public void S
     // Update is called once per frame
     void Update()
     {

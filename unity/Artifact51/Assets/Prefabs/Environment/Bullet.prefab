@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedShield: {fileID: 0}
+  startLifetime: 30
+  explosion: {fileID: 100004, guid: 33384af7b24a0f14cb7bbf3b795f7a2b, type: 3}
 --- !u!33 &4133431860494451997
 MeshFilter:
   m_ObjectHideFlags: 0

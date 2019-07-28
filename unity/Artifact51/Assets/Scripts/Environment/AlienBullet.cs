@@ -9,9 +9,17 @@ public class AlienBullet : Interactable
     public float startLifetime = 30f;
     float lifeTime = 30;
     bool dying = true;
+    public GameObject explosion;
 
     // Start is called before the first frame update
     void Start()
+    {
+        lifeTime = startLifetime;
+        explosion = GameObject.Instantiate(explosion, transform.position, transform.rotation);
+        explosion.SetActive(false);
+    }
+
+    private void OnEnable()
     {
         lifeTime = startLifetime;
     }
@@ -33,6 +41,8 @@ public class AlienBullet : Interactable
 
     public void Death()
     {
+        explosion.transform.position = transform.position;
+        explosion.SetActive(true);
         gameObject.SetActive(false);
     }
 

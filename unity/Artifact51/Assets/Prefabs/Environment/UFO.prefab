@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f1f19749655616c428284774e6a6405c, type: 2}
+  - {fileID: 2100000, guid: 0b3a326fd00e04b468742e24d2091f28, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,7 +137,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f1f19749655616c428284774e6a6405c, type: 2}
+  - {fileID: 2100000, guid: 0b3a326fd00e04b468742e24d2091f28, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -311,7 +311,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6844770982546216671}
-  m_Material: {fileID: 13400000, guid: 3b46614a606f5db4fa21a18e560117b8, type: 2}
+  m_Material: {fileID: 13400000, guid: 4308df4d6b5225546a534c41b368dbe9, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -392,7 +392,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f1f19749655616c428284774e6a6405c, type: 2}
+  - {fileID: 2100000, guid: 0b3a326fd00e04b468742e24d2091f28, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -472,6 +472,7 @@ GameObject:
   - component: {fileID: 6059868890137906962}
   - component: {fileID: 8406248806748379033}
   - component: {fileID: 8113195748460820819}
+  - component: {fileID: 1449615133674767934}
   m_Layer: 12
   m_Name: cockpit
   m_TagString: Untagged
@@ -554,3 +555,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1449615133674767934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8470275857095145982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d45897577307c4980ec7c4bb556ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 10

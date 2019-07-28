@@ -6,25 +6,32 @@ public class EnemyHP : MonoBehaviour
     public int maxHP = 1;
     int hp = 1;
     // Use this for initialization
-    void Start()
+    protected virtual void Start()
     {
         hp = maxHP;
     }
 
-    public void TakeDamage()
+    public virtual void TakeDamage(int value = 1)
     {
-        hp--;
+        hp -= value;
         if (hp <= 0)
             Die();
     }
 
     public void Die()
     {
-        Destroy(this.gameObject);
+        Destroy(this.transform.root.gameObject);
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "bullet")
+        {
+            TakeDamage();
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "bullet")
         {
             TakeDamage();
         }

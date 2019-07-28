@@ -16,6 +16,7 @@ public class Gun : Interactable
     GunSpawner spawner;
     PlayerGunHandler gunHandler;
     public float gunCooldown;
+    public GameObject explosion;
 
     public float startLifetime = 30;
     float lifetime = 30;
@@ -112,6 +113,7 @@ public class Gun : Interactable
                 hp.TakeDamage();
             }
         }
+        GameObject.Instantiate(explosion, transform.position, transform.rotation);
         Destroy(this.gameObject);
 
     }

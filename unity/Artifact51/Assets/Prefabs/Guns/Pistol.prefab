@@ -396,6 +396,7 @@ MonoBehaviour:
   text: {fileID: 237184262882699415}
   ammo: 10
   gunCooldown: 3
+  explosion: {fileID: 100004, guid: 33384af7b24a0f14cb7bbf3b795f7a2b, type: 3}
   startLifetime: 30
 --- !u!54 &2318513077098861738
 Rigidbody:
@@ -424,6 +425,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3716739580270092958, guid: 63d3c697854f7c54fb4a660cfb5774cc,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281532201
+      objectReference: {fileID: 0}
+    - target: {fileID: 3716739580270092958, guid: 63d3c697854f7c54fb4a660cfb5774cc,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.16078432
+      objectReference: {fileID: 0}
+    - target: {fileID: 3716739580270092958, guid: 63d3c697854f7c54fb4a660cfb5774cc,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.19607845
       objectReference: {fileID: 0}
     - target: {fileID: 4281130872181825898, guid: 63d3c697854f7c54fb4a660cfb5774cc,
         type: 3}
@@ -544,21 +560,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0.49411768
-      objectReference: {fileID: 0}
-    - target: {fileID: 3716739580270092958, guid: 63d3c697854f7c54fb4a660cfb5774cc,
-        type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4281532201
-      objectReference: {fileID: 0}
-    - target: {fileID: 3716739580270092958, guid: 63d3c697854f7c54fb4a660cfb5774cc,
-        type: 3}
-      propertyPath: m_fontColor.r
-      value: 0.16078432
-      objectReference: {fileID: 0}
-    - target: {fileID: 3716739580270092958, guid: 63d3c697854f7c54fb4a660cfb5774cc,
-        type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.19607845
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63d3c697854f7c54fb4a660cfb5774cc, type: 3}

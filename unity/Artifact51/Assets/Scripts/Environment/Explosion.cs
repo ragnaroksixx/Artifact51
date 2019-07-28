@@ -10,6 +10,8 @@ public class Explosion : MonoBehaviour
     public float explosionRadius = 10;
     public int explosionRays = 30;
 
+    public float lifeTime = 10;
+
     private void OnEnable()
     {
         AudioSource sound = GetComponent<AudioSource>();
@@ -45,6 +47,10 @@ public class Explosion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        lifeTime -= Time.deltaTime;
+        if(lifeTime <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

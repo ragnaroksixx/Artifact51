@@ -17,7 +17,13 @@ public class Shield : MonoBehaviour
     {
         foreach (GameObject obj in caughtObject)
         {
-            Destroy(obj);
+            AlienBullet a = obj.GetComponent<AlienBullet>();
+            if (a != null)
+            {
+                a.Death();
+            } else {
+                Destroy(obj);
+            }
         }
         Destroy(this.gameObject);
     }

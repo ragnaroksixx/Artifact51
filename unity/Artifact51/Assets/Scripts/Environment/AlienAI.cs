@@ -11,7 +11,6 @@ public class AlienAI : MonoBehaviour
     public float moveTargetArc = 135;
 
     public GameObject cannon;
-    public GameObject bullet;
     public float fireRate = 1;
     public float fireRandomness = 1.5f;
     public float bulletSpeed = 30;
@@ -101,7 +100,8 @@ public class AlienAI : MonoBehaviour
             bulletTimer += Time.fixedDeltaTime;
             while (fireRate > 0 && bulletTimer > 1 / fireRate)
             {
-                GameObject b = GameObject.Instantiate(bullet, cannon.transform.position, cannon.transform.rotation);
+                GameObject b = BulletPool.SpawnBullet();
+                b.transform.position = cannon.transform.position;
                 Rigidbody bBody = b.GetComponent<Rigidbody>();
                 bBody.velocity = cannon.transform.forward * bulletSpeed;
                 bulletTimer -= 1 / fireRate * Random.Range(1, fireRandomness);

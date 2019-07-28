@@ -5,10 +5,15 @@ using UnityEngine;
 public class AlienBullet : Interactable
 {
     public Shield attachedShield;
+
+    public float startLifetime = 30f;
+    float lifeTime = 30;
+    bool dying = true;
+
     // Start is called before the first frame update
     void Start()
     {
-        //Destroy(this, 30);
+        lifeTime = startLifetime;
     }
 
     // Update is called once per frame
@@ -17,9 +22,23 @@ public class AlienBullet : Interactable
 
     }
 
+    private void FixedUpdate()
+    {
+        lifeTime -= Time.fixedDeltaTime;
+        if(lifeTime <=0 && dying)
+        {
+            Death();
+        }
+    }
+
+    public void Death()
+    {
+        gameObject.SetActive(false);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        //Destroy(this.gameObject);
+
     }
 
     public void Stop(Vector3 position)
@@ -27,6 +46,7 @@ public class AlienBullet : Interactable
         rBody.velocity = Vector3.zero;
         transform.position = position;
         rBody.constraints = RigidbodyConstraints.FreezeAll;
+        lifeTime = startLifetime;
         //GetComponent<Collider>().enabled = false;
     }
 
@@ -46,6 +66,9 @@ public class AlienBullet : Interactable
             rBody.velocity = velocity * 60;
             rBody.useGravity = true;
         }
+        lifeTime = startLifetime;
+        dying = true;
+        transform.SetParent(BulletPool.instance.transform, true);
     }
     public override void Grab(Transform hand)
     {
@@ -55,5 +78,7 @@ public class AlienBullet : Interactable
         gameObject.tag = "bullet";
         GetComponent<Collider>().enabled = false;
         rBody.constraints = RigidbodyConstraints.FreezeAll;
+        lifeTime = startLifetime;
+        dying = false;
     }
 }

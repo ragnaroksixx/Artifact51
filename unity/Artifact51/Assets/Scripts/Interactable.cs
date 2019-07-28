@@ -4,7 +4,6 @@ using System.Collections;
 public class Interactable : MonoBehaviour
 {
     protected Rigidbody rBody;
-    CoroutineHandler destroyRoutine;
     public virtual bool IsInteractable()
     {
         return true;
@@ -12,7 +11,6 @@ public class Interactable : MonoBehaviour
     protected virtual void Awake()
     {
         rBody = GetComponent<Rigidbody>();
-        destroyRoutine = new CoroutineHandler(this);
     }
     public virtual void Grab(Transform hand)
     {
@@ -21,19 +19,11 @@ public class Interactable : MonoBehaviour
         rBody.constraints = RigidbodyConstraints.FreezeAll;
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
-        destroyRoutine.StopCoroutine();
     }
 
     public virtual void Release(Vector3 velocity)
     {
         transform.parent = null;
         rBody.constraints = RigidbodyConstraints.None;
-        destroyRoutine.StartCoroutine(DestroyIn(10));
-    }
-
-    IEnumerator DestroyIn(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        Destroy(this.gameObject);
     }
 }

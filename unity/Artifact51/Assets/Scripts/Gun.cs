@@ -16,11 +16,16 @@ public class Gun : Interactable
     GunSpawner spawner;
     PlayerGunHandler gunHandler;
     public float gunCooldown;
+
+    public float startLifetime = 30;
+    float lifetime = 30;
+    bool released = false;
     protected override void Awake()
     {
         base.Awake();
         startPos = transform.localPosition;
-        text.text = ammo.ToString(); ;
+        text.text = ammo.ToString();
+        lifetime = startLifetime;
     }
     public void Init(GunSpawner gs)
     {
@@ -84,4 +89,15 @@ public class Gun : Interactable
         }
     }
 
+    private void FixedUpdate()
+    {
+        if(released)
+        {
+            lifetime -= Time.fixedDeltaTime;
+            if(lifetime <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
 }

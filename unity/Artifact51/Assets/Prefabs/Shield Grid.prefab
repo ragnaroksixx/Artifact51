@@ -58,8 +58,6 @@ MonoBehaviour:
   - {fileID: 8721546283394207520}
   - {fileID: 8721546282637495360}
   centerShield: {fileID: 23783674437459644}
-  duration: 5
-  spawnDuration: 1
   isAnimatingUp: 0
 --- !u!1001 &1961685554246082149
 PrefabInstance:
@@ -128,6 +126,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8745241720653477006, guid: 162b1db7b0231b348908728eac962c33,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8745241720653477006, guid: 162b1db7b0231b348908728eac962c33,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8745241720653477006, guid: 162b1db7b0231b348908728eac962c33,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8745241720653476992, guid: 162b1db7b0231b348908728eac962c33,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ebe07991012635f4da4a6679e0015413, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 162b1db7b0231b348908728eac962c33, type: 3}
 --- !u!4 &7089819875276162651 stripped

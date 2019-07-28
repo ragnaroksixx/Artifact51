@@ -20,6 +20,7 @@ public class Gun : Interactable
     public float startLifetime = 30;
     float lifetime = 30;
     bool released = false;
+    bool explodeOnImpact = false;
     protected override void Awake()
     {
         base.Awake();
@@ -71,11 +72,12 @@ public class Gun : Interactable
 
         rBody.velocity = velocity * 125;
         rBody.useGravity = true;
-        if(gunHandler)
+        if (gunHandler)
         {
             gunHandler.gun = null;
             gunHandler = null;
         }
+        explodeOnImpact = true;
     }
 
     public override void Grab(Transform hand)
@@ -87,14 +89,39 @@ public class Gun : Interactable
             spawner.TakeWeapon();
             spawner = null;
         }
+        explodeOnImpact = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (explodeOnImpact || collision.gameObject.tag == "ebullet")
+        {
+            Explode(collision.GetContact(0).point);
+        }
+    }
+
+    void Explode(Vector3 point)
+    {
+        float radius = .5f;
+        Collider[] cols = Physics.OverlapSphere(point, radius);
+        foreach (Collider collider in cols)
+        {
+            EnemyHP hp = collider.GetComponentInParent<EnemyHP>();
+            if (hp != null)
+            {
+                hp.TakeDamage();
+            }
+        }
+        Destroy(this.gameObject);
+
     }
 
     private void FixedUpdate()
     {
-        if(released)
+        if (released)
         {
             lifetime -= Time.fixedDeltaTime;
-            if(lifetime <= 0)
+            if (lifetime <= 0)
             {
                 Destroy(this.gameObject);
             }

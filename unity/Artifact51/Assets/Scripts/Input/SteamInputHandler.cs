@@ -6,7 +6,11 @@ public class SteamInputHandler : VRInputHandler
 {
     protected override void SetUpActions()
     {
-        RegisterAction(VRInputHandler.CREATE_SHIELD, SteamVR_Actions.default_GrabGrip, SteamVR_Input_Sources.LeftHand);
+        RegisterAction(VRInputHandler.CREATE_SHIELD, SteamVR_Actions.default_Teleport, SteamVR_Input_Sources.LeftHand);
+        RegisterAction(VRInputHandler.SHOOT, SteamVR_Actions.default_Teleport, SteamVR_Input_Sources.RightHand);
+
+        RegisterAction(VRInputHandler.INTERACT_LEFT, SteamVR_Actions.default_GrabGrip, SteamVR_Input_Sources.LeftHand);
+        RegisterAction(VRInputHandler.INTERACT_RIGHT, SteamVR_Actions.default_GrabGrip, SteamVR_Input_Sources.RightHand);
     }
     void RegisterAction(string action, SteamVR_Action_Boolean b, SteamVR_Input_Sources s)
     {

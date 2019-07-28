@@ -44,6 +44,12 @@ public class AlienAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (LevelManager.Instance.isGameOver)
+        {
+            legsAnim.SetBool("isMoving", false);
+            torsoAnim.SetBool("isMoving", false);
+            return;
+        }
         Vector3 target = playerHead.transform.position - transform.position;
 
         torso.rotation = Quaternion.LookRotation((playerHead.transform.position - cannon.transform.position).normalized, Vector3.up);
@@ -54,7 +60,10 @@ public class AlienAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        if (LevelManager.Instance.isGameOver)
+        {
+            return;
+        }
         Vector3 targetVel = Vector3.zero;
         if (moveTarget != null)
         {

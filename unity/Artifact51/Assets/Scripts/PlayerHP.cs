@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyHP : MonoBehaviour
+public class PlayerHP : MonoBehaviour
 {
     public int maxHP = 1;
     int hp = 1;
@@ -20,11 +20,11 @@ public class EnemyHP : MonoBehaviour
 
     public void Die()
     {
-        Destroy(this.gameObject);
+        LevelManager.GameOver();
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "bullet")
+        if (other.gameObject.tag == "ebullet")
         {
             TakeDamage();
         }

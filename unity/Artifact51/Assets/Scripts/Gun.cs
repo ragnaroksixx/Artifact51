@@ -76,6 +76,7 @@ public class Gun : Interactable
     public override void Grab(Transform hand)
     {
         base.Grab(hand);
+        LevelManager.StartGame();
         if (spawner)
         {
             spawner.TakeWeapon();

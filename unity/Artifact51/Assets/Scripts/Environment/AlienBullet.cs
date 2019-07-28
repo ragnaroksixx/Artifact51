@@ -52,6 +52,7 @@ public class AlienBullet : Interactable
         if (attachedShield)
             attachedShield.Detach(gameObject);
         base.Grab(hand);
+        gameObject.tag = "bullet";
         GetComponent<Collider>().enabled = false;
         rBody.constraints = RigidbodyConstraints.FreezeAll;
     }

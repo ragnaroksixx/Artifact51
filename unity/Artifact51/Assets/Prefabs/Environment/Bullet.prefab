@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3854030921038697189}
   m_Layer: 11
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: ebullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84b66a95c20dd9498f2aa263c8b1e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attachedShield: {fileID: 0}
 --- !u!33 &4133431860494451997
 MeshFilter:
   m_ObjectHideFlags: 0

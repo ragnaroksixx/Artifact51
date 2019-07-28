@@ -8,6 +8,7 @@ TagManager:
   - FxTemporaire
   - shield
   - bullet
+  - ebullet
   layers:
   - Default
   - TransparentFX

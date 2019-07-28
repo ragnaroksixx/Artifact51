@@ -49,7 +49,7 @@ public class AlienBullet : Interactable
 
     private void OnCollisionEnter(Collision collision)
     {
-
+        
     }
 
     public void Stop(Vector3 position)

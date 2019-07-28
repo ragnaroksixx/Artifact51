@@ -28,12 +28,22 @@ public class EnemyHP : MonoBehaviour
         {
             TakeDamage();
         }
+        AlienBullet b = collision.transform.GetComponent<AlienBullet>();
+        if (b != null)
+        {
+            b.Death();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "bullet")
         {
             TakeDamage();
+        }
+        AlienBullet b = other.transform.GetComponent<AlienBullet>();
+        if (b != null)
+        {
+            b.Death();
         }
     }
 }

@@ -6,7 +6,7 @@ public class Shield : MonoBehaviour
 {
     public List<GameObject> caughtObject = new List<GameObject>();
     public bool canCatch = true;
-    public int capacity = 2;
+    int capacity = 3;
     ShieldGrid grid;
     public void Init(ShieldGrid g, int c)
     {
@@ -35,9 +35,10 @@ public class Shield : MonoBehaviour
         AlienBullet projectile = source.GetComponent<AlienBullet>();
         if (projectile)
         {
+            if (caughtObject.Contains(source)) return;
             caughtObject.Add(source);
             projectile.Stop(point);
-            if (caughtObject.Count >= capacity)
+            if (caughtObject.Count > capacity)
             {
                 DestroyShield();
                 grid.RemoveShield(this);

@@ -13,7 +13,7 @@ public class AlienBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Destroy(this, 30);
     }
 
     // Update is called once per frame

@@ -31,7 +31,7 @@ public class AlienAI : MonoBehaviour
         }
         else
         {
-            playerHead = VRReferences.Head.GetComponent<Collider>();
+            playerHead = VRReferences.Head.GetComponentInChildren<Collider>();
         }
 
         moveTarget = AlienArea.instance.GetTarget(transform.position, moveTargetArc);

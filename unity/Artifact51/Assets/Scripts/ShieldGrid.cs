@@ -9,7 +9,7 @@ public class ShieldGrid : MonoBehaviour
     public Shield centerShield;
     ShieldGenerator source;
     public float duration = 5;
-    public float spawnDuration = 1;
+    float spawnDuration = .2f;
     public bool isAnimatingUp;
     Tween animateUp;
     public void Init(ShieldGenerator s)
@@ -17,7 +17,7 @@ public class ShieldGrid : MonoBehaviour
         source = s;
         foreach (Shield shield in shields)
         {
-            shield.Init(this, 2);
+            shield.Init(this, 3);
         }
         centerShield.Init(this, 9999);
         duration += spawnDuration;

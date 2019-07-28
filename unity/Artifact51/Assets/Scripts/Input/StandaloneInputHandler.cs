@@ -6,6 +6,7 @@ public class StandaloneInputHandler : VRInputHandler
     protected override void SetUpActions()
     {
         RegisterAction(VRInputHandler.CREATE_SHIELD, KeyCode.Mouse0);
+        RegisterAction(VRInputHandler.SHOOT, KeyCode.Mouse1);
         RegisterAction(VRInputHandler.DEBUG_RESTART_SCENE, KeyCode.R);
     }
 

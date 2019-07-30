@@ -21,7 +21,9 @@ public class Shield : MonoBehaviour
             if (a != null)
             {
                 a.Death();
-            } else {
+            }
+            else
+            {
                 Destroy(obj);
             }
         }
@@ -34,7 +36,7 @@ public class Shield : MonoBehaviour
         {
             if (grid.isAnimatingUp && source.transform.root != transform.root)
             {
-                grid.Return();
+                grid.Return(this);
             }
             return;
         }

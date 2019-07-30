@@ -18,8 +18,9 @@ public class EnemyHP : MonoBehaviour
             Die();
     }
 
-    public void Die()
+    public virtual void Die()
     {
+        LevelManager.Instance.IncrementKill();
         Destroy(this.transform.root.gameObject);
     }
     private void OnCollisionEnter(Collision collision)

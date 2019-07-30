@@ -3,7 +3,7 @@ using System.Collections;
 using DG.Tweening;
 public class GunSpawner : MonoBehaviour
 {
-    public Gun gunPrefab;
+    public Gun[] gunPrefabs;
     public Transform rotator;
     float countdownTrack;
     public Gun setGun;
@@ -13,12 +13,11 @@ public class GunSpawner : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        countdownTrack = gunPrefab.gunCooldown;
         Sequence t = DOTween.Sequence()
             .Append(rotator.DOLocalMoveY(start - delta, 1))
             .Append(rotator.DOLocalMoveY(start, 1))
             .SetLoops(-1);
-
+        SpawnGun(0);
     }
 
     // Update is called once per frame
@@ -35,19 +34,23 @@ public class GunSpawner : MonoBehaviour
         countdownTrack -= Time.deltaTime;
         if (countdownTrack <= 0)
         {
-            setGun = Instantiate(gunPrefab);
-            setGun.transform.SetParent(rotator);
-            setGun.transform.localPosition = Vector3.zero;
-            setGun.Init(this);
+            SpawnGun(Random.Range(0, gunPrefabs.Length));
+
 
         }
 
     }
-
+    void SpawnGun(int index)
+    {
+        setGun = Instantiate(gunPrefabs[index]);
+        setGun.transform.SetParent(rotator);
+        setGun.transform.localPosition = Vector3.zero;
+        setGun.Init(this);
+    }
     public void TakeWeapon()
     {
         setGun = null;
-        countdownTrack = gunPrefab.gunCooldown;
+        countdownTrack = 5;
     }
 
 }

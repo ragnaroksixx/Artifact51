@@ -12,5 +12,10 @@ public class InputHacks : MonoBehaviour
         {
             SceneLoader.ReloadScene();
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            LevelManager.StartGame();
+        }
     }
 }

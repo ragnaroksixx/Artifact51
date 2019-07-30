@@ -168,7 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b47ef0c823774f541a2b25b226c97650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunPrefab: {fileID: 6196546881353949731, guid: 88fdc289db0c11346b9182838d7755de,
-    type: 3}
+  gunPrefabs:
+  - {fileID: 6196546881353949731, guid: 88fdc289db0c11346b9182838d7755de, type: 3}
+  - {fileID: 5447102174411622505, guid: 87b7eae735f1aff47995ab3f7944f0f1, type: 3}
   rotator: {fileID: 3588244376905590076}
   setGun: {fileID: 0}

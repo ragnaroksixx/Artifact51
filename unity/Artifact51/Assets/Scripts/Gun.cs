@@ -15,7 +15,6 @@ public class Gun : Interactable
     public int ammo;
     GunSpawner spawner;
     PlayerGunHandler gunHandler;
-    public float gunCooldown;
     public GameObject explosion;
 
     public float startLifetime = 30;
@@ -33,18 +32,21 @@ public class Gun : Interactable
     {
         spawner = gs;
     }
-    public void Shoot()
+    public virtual void Shoot()
     {
         if (ammo <= 0) return;
 
-        GameObject b = GameObject.Instantiate(bullet, nozzle.transform.position, nozzle.transform.rotation);
-        Rigidbody bBody = b.GetComponent<Rigidbody>();
-        bBody.velocity = nozzle.transform.forward * bulletSpeed;
+        ShootFrom(nozzle);
         Recoil();
         ammo--;
         text.text = ammo.ToString(); ;
     }
-
+    protected void ShootFrom(Transform t)
+    {
+        GameObject b = GameObject.Instantiate(bullet, t.position, t.rotation);
+        Rigidbody bBody = b.GetComponent<Rigidbody>();
+        bBody.velocity = t.forward * bulletSpeed;
+    }
     public void Recoil()
     {
         if (recoilTween != null)

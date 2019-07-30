@@ -19,7 +19,7 @@ public class PID :MonoBehaviour
     }
 
 
-    public Vector3 Update(Vector3 setpoint, Vector3 actual, float timeFrame)
+    public Vector3 UpdatePID(Vector3 setpoint, Vector3 actual, float timeFrame)
     {
         Vector3 present = setpoint - actual;
         integral += present * timeFrame;

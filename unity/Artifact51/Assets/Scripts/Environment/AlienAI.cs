@@ -102,8 +102,12 @@ public class AlienAI : MonoBehaviour
             {
                 GameObject b = BulletPool.SpawnBullet();
                 b.transform.position = cannon.transform.position;
+                b.transform.rotation = cannon.transform.rotation;
                 Rigidbody bBody = b.GetComponent<Rigidbody>();
-                bBody.velocity = cannon.transform.forward * bulletSpeed;
+                float var = 0.2f;
+                Vector3 variance = cannon.transform.right * Random.Range(-var, var);
+                variance += cannon.transform.up * Random.Range(-var, var);
+                bBody.velocity = cannon.transform.forward * bulletSpeed + variance;
                 bulletTimer -= 1 / fireRate * Random.Range(1, fireRandomness);
                 legsAnim.SetTrigger("shoot");
                 torsoAnim.SetTrigger("shoot");

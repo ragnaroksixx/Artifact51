@@ -11,7 +11,7 @@ public class ShieldGrid : MonoBehaviour
     public List<Shield> shields;
     public Shield centerShield;
     ShieldGenerator source;
-    float duration = 15;
+    float duration = 10;
     float spawnDuration = .2f;
     public bool isAnimatingUp;
     Tween animateUp;
@@ -56,18 +56,25 @@ public class ShieldGrid : MonoBehaviour
             shields.Remove(s);
     }
 
-    public void Return()
+    public void Return(Shield shield)
     {
-        isAnimatingUp = false;
-        animateUp.Kill();
-        foreach (Shield s in shields)
-            s.DisableCollision();
-        centerShield.DisableCollision();
-        Tween t = transform.DOScale(Vector3.zero, spawnDuration / 1.5f);
-        t.OnComplete(() =>
+        if (shield == centerShield)
         {
-            source.AddShield(1);
-            DestroyGrid();
-        });
+            isAnimatingUp = false;
+            animateUp.Kill();
+            foreach (Shield s in shields)
+                s.DisableCollision();
+            centerShield.DisableCollision();
+            Tween t = transform.DOScale(Vector3.zero, spawnDuration / 1.5f);
+            t.OnComplete(() =>
+            {
+                DestroyGrid();
+            });
+        }else
+        {
+            shields.Remove(shield);
+            shield.DestroyShield();
+        }
+
     }
 }

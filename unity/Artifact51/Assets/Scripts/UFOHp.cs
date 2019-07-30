@@ -8,15 +8,16 @@ public class UFOHp : EnemyHP
     Color og, og_2, hurt = Color.white;
     Sequence flashTween;
     Sequence flashTween_2;
+    AlienUFO ufo;
     // Use this for initialization
     protected override void Start()
     {
         base.Start();
+        ufo = GetComponentInParent<AlienUFO>();
         mat = GetComponent<MeshRenderer>().material;
         og = mat.color;
         og_2 = mat.GetColor("_EmissionColor");
     }
-
     public override void TakeDamage(int value = 1)
     {
         Flash();
@@ -36,5 +37,13 @@ public class UFOHp : EnemyHP
         .Append(mat.DOColor(hurt, "_EmissionColor", .1f))
         .Append(mat.DOColor(og_2, "_EmissionColor", 0.1f))
         .SetLoops(10);
+    }
+    public override void Die()
+    {
+        foreach (GameObject item in ufo.dropAliens)
+        {
+            LevelManager.Instance.IncrementKill();
+        }
+        Destroy(this.transform.root.gameObject);
     }
 }

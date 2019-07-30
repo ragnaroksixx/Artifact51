@@ -30,7 +30,7 @@ public class UFOphysics : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 thrust = positionPID.Update(targetPosition, transform.position, Time.fixedDeltaTime);
+        Vector3 thrust = positionPID.UpdatePID(targetPosition, transform.position, Time.fixedDeltaTime);
         thrust = Vector3.ClampMagnitude(thrust, maxThrust * Time.fixedDeltaTime);
         body.AddForce(thrust, ForceMode.VelocityChange);
 
@@ -39,7 +39,7 @@ public class UFOphysics : MonoBehaviour
 
         Vector3 rot = (Quaternion.Euler(0, targetSpin, 0) * Quaternion.Inverse(transform.rotation)).eulerAngles;
 
-        Vector3 torque = rotationPID.Update(Vector3.zero, 
+        Vector3 torque = rotationPID.UpdatePID(Vector3.zero, 
             DeltaAngle(rot, new Vector3(0, 0, 0)), 
             Time.fixedDeltaTime);
         //torque = transform.InverseTransformVector(torque);

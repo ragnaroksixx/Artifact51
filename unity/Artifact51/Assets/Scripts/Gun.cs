@@ -21,6 +21,8 @@ public class Gun : Interactable
     float lifetime = 30;
     bool released = false;
     bool explodeOnImpact = false;
+    public AudioSource sfx;
+    public AudioClip empty;
     protected override void Awake()
     {
         base.Awake();
@@ -34,12 +36,24 @@ public class Gun : Interactable
     }
     public virtual void Shoot()
     {
-        if (ammo <= 0) return;
-
+        if (ammo <= 0)
+        {
+            sfx.clip = empty;
+            sfx.Play();
+            return;
+        }
         ShootFrom(nozzle);
         Recoil();
         ammo--;
         text.text = ammo.ToString(); ;
+        sfx.Play();
+    }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            Shoot();
+        }
     }
     protected void ShootFrom(Transform t)
     {

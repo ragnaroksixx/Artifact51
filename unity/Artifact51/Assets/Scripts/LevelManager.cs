@@ -21,8 +21,10 @@ public class LevelManager : MonoBehaviour
     float groundRange = 14;
     float intensity = 1;
     public GameObject destroyOnStart;
+    AudioSource bgm;
     private void Awake()
     {
+        bgm = GetComponent<AudioSource>();
         Instance = this;
 #if UNITY_ANDROID && !UNITY_EDITOR
         darkDensity /= 2;
@@ -94,9 +96,14 @@ public class LevelManager : MonoBehaviour
         ufo.transform.position = ufo.dropStart + (Vector3.up * 45);
         ufo.gameObject.SetActive(true);
     }
+    int groundSpawnIndex = 0;
     public void SpawnUnit()
     {
-        Transform t = groundPoints[Random.Range(0, groundPoints.Length)];
+        if (Random.Range(0, 4) == 0)
+        {
+            groundSpawnIndex = Random.Range(0, groundPoints.Length);
+        }
+        Transform t = groundPoints[groundSpawnIndex];
         Vector3 pos = t.position;
         pos += t.right * Random.Range(-groundRange, groundRange);
         GameObject.Instantiate(alienPrefab, pos, Quaternion.identity);
@@ -137,6 +144,7 @@ public class LevelManager : MonoBehaviour
         if (Instance.isGameOver) return;
         Instance.isGameOver = true;
         Tweener t = DOTween.To(() => RenderSettings.fogDensity, x => RenderSettings.fogDensity = x, Instance.darkDensity, 1);
+        Instance.bgm.DOFade(0f, 1);
         t.OnComplete(() => { SceneLoader.ReloadScene(); });
     }
     void StartGameImp()
@@ -145,6 +153,9 @@ public class LevelManager : MonoBehaviour
         Destroy(destroyOnStart);
         Tweener t = DOTween.To(() => RenderSettings.fogDensity, x => RenderSettings.fogDensity = x, lightDensity, 1);
         t.OnComplete(() => { OnEffectEnd(); });
+        bgm.volume = 0f;
+        bgm.Play();
+        bgm.DOFade(.5f, 60);
     }
 
     void OnEffectEnd()

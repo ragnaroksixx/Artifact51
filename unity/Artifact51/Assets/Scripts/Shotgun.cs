@@ -8,8 +8,8 @@ class Shotgun : Gun
     public Transform[] nozzles;
     public override void Shoot()
     {
-        if (ammo <= 0) return;
         base.Shoot();
+        if (ammo < 0) return;
         foreach (Transform item in nozzles)
         {
             ShootFrom(item);

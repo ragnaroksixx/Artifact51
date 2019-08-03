@@ -36,7 +36,8 @@ public class AlienBullet : Interactable
         lifeTime -= Time.fixedDeltaTime;
         if (lifeTime <= 0 && dying)
         {
-            Death();
+            // Death();
+            gameObject.SetActive(false);
         }
     }
 

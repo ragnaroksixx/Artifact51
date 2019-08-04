@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Oculus.unity
     guid: 5102966c1ec6b19419747570efb5ba48
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EnvironmentTest.unity
     guid: 335a5b23c9e4a9e47a5e907b0aceed46
   - enabled: 1
@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Standalone.unity
     guid: c01fce909f60feb41adafa819db5d2a7
+  - enabled: 1
+    path: Assets/Scenes/Hangar51.unity
+    guid: 6c043abaa8551874e87667078c8de0dc
   m_configObjects: {}
